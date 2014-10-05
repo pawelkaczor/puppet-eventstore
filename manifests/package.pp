@@ -14,13 +14,15 @@ class eventstore::package(
     if $ensure == 'present' {
       wget::fetch { 'download_eventstore':
         source      => "$url",
-        destination => "/usr/local/src/eventstore-$version.tgz",
+        destination => "/usr/local/src/eventstore-$version.tar.gz",
         before      => Exec['untar_eventstore'],
       }
+      file { "${dir}-$version":
+        ensure => "directory",
+      }
       exec { 'untar_eventstore':
-        command => "tar xvzf /usr/local/src/eventstore-$version.tgz && mv eventstore eventstore-$version && rm start.sh",
-        cwd     => '/opt',
-        creates => "${dir}-$version",
+        command => "tar xvzf /usr/local/src/eventstore-$version.tar.gz",
+        cwd     => "${dir}-$version",
         path    => ['/bin', '/usr/bin'],
         before  => File[$dir],
       }

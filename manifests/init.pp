@@ -14,9 +14,9 @@ class eventstore(
   $prefixes         = 'http://*:2113/',
 # undocumented flag from EventStore:
 #  $run_projections  = true,
-  $use_pkg          = true
+  $use_pkg          = false
 ) {
-  $url    = "http://download.geteventstore.com/binaries/eventstore-mono-$version.tgz"
+  $url    = "http://download.geteventstore.com/binaries/EventStore-OSS-Linux-v$version.tar.gz"
   $home   = $dir
 
   group { $group:
@@ -33,7 +33,6 @@ class eventstore(
   }
 
   class { 'eventstore::package': 
-    require => Class['mono'],
   } ->
 
   class { 'eventstore::config': } ~>

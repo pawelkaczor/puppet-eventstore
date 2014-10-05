@@ -1,4 +1,4 @@
-name 'haf-eventstore'
+name 'eventstore'
 version '0.0.1'
 
 author 'Henrik Feldt'
