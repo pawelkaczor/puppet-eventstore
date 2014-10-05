@@ -10,7 +10,7 @@ class eventstore::config(
   $log_dir          = $eventstore::log_dir
   $etc_dir          = $eventstore::etc_dir
   $data_dir         = $eventstore::data_dir
-  $config_file      = "$etc_dir/config.json"
+  $config_file      = "$etc_dir/config.yaml"
   $user             = $eventstore::user
   $group            = $eventstore::group
 
@@ -26,7 +26,7 @@ class eventstore::config(
 
   file { $config_file:
     ensure => $ensure,
-    content => template('eventstore/config.json.erb'),
+    content => template('eventstore/config.yaml.erb'),
     owner   => $user,
     group   => $group,
     require => File[$etc_dir],

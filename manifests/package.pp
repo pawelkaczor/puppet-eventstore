@@ -17,12 +17,9 @@ class eventstore::package(
         destination => "/usr/local/src/eventstore-$version.tar.gz",
         before      => Exec['untar_eventstore'],
       }
-      file { "${dir}-$version":
-        ensure => "directory",
-      }
       exec { 'untar_eventstore':
-        command => "tar xvzf /usr/local/src/eventstore-$version.tar.gz",
-        cwd     => "${dir}-$version",
+        command => "tar xvzf /usr/local/src/eventstore-$version.tar.gz && mv EventStore-OSS-Linux-v$version eventstore-$version",
+        cwd     => "/opt",
         path    => ['/bin', '/usr/bin'],
         before  => File[$dir],
       }

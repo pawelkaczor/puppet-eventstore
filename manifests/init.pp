@@ -1,6 +1,6 @@
 class eventstore(
   $ensure           = 'present',
-  $version          = '2.0.1',
+  $version          = '3.0.0',
   $dir              = '/opt/eventstore',
   $log_dir          = '/var/log/eventstore',
   $etc_dir          = '/etc/eventstore',
